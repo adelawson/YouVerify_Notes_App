@@ -6,27 +6,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.fragment.NavHostFragment
 import com.adelawson.youverifynotes.R
+import com.adelawson.youverifynotes.databinding.HomescreenFragmentBinding
 
 class HomeScreenFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = HomeScreenFragment()
-    }
-
+    private lateinit var binding:HomescreenFragmentBinding
     private lateinit var viewModel: MainViewModel
+    private lateinit var navHostFragment: NavHostFragment
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.homescreen_fragment, container, false)
+        binding = HomescreenFragmentBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //nav setup
+        navHostFragment =  activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
+
     }
 
 }

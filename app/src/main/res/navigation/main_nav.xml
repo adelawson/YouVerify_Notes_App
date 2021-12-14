@@ -9,10 +9,18 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.adelawson.youverifynotes.ui.main.HomeScreenFragment"
         android:label="homescreen_fragment"
-        tools:layout="@layout/homescreen_fragment" />
+        tools:layout="@layout/homescreen_fragment" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_newTodoFragment"
+            app:destination="@id/newTodoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.adelawson.youverifynotes.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/newTodoFragment"
+        android:name="com.adelawson.youverifynotes.NewTodoFragment"
+        android:label="NewTodoFragment" />
 </navigation>

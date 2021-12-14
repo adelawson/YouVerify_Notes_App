@@ -10,7 +10,28 @@
     <string name="apps">apps</string>
 
     <!-- Priority Titles -->
+    <string name="priority_hdr">Priority</string>
     <string name="low_priority">Low</string>
     <string name="mid_priority">Medium</string>
     <string name="high_priority">High</string>
+
+    <!-- Homescreen Text-->
+    <string name="homescreen_hdr">Hello %1$d</string>
+    <string name="homescreen_subtitle">Let\'s be productive today</string>
+    <string name="homescreen_date">Today, %1$d</string>
+
+    <!-- Create New task Text-->
+    <string name="newtask_hdr">Create new task</string>
+    <string name="taskname_fld">Task name</string>
+    <string name="taskdescription_fld">Task description</string>
+    <string name="date">Date</string>
+    <string name="alarm">Alarm</string>
+    <string name="remind_me">Remind me</string>
+
+    <!-- Category Titles-->
+    <string name="category_hdr">Category</string>
+    <string name="work_cat">Work</string>
+    <string name="family_cat">Family</string>
+    <string name="school_cat">School</string>
+
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true" android:state_focused="true"
+        android:drawable="@drawable/low_priority_deselected" />
+
+    <item android:state_checked="false" android:state_focused="true"
+        android:drawable="@drawable/round_corners" />
+
+    <item android:state_checked="false" android:drawable="@drawable/low_priority_deselected"/>
+    <item android:drawable="@drawable/round_corners" android:state_checked="true"/>
+</selector>

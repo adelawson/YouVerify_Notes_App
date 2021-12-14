@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/alarm_ic.xml" value="0.2703125" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/calendar_ic.xml" value="0.2703125" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/homescreen_ic.xml" value="0.2703125" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/low_priority.xml" value="0.2703125" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/low_priority_design.xml" value="0.2703125" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/new_note_ic.xml" value="0.2703125" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/round_corners.xml" value="0.2703125" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/fragment_calendar.xml" value="0.17255434782608695" />
-        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/homescreen_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/fragment_new_todo.xml" value="0.264" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/homescreen_fragment.xml" value="0.264" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/main_activity.xml" value="0.264" />
-        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/todo_card.xml" value="0.536" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/todo_card.xml" value="0.264" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/menu/home_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
