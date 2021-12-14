@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">YouVerify Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Bottom Menu Titles -->
+    <string name="home">Home</string>
+    <string name="alarms">alarms</string>
+    <string name="calendar">calendar</string>
+    <string name="apps">apps</string>
+
+    <!-- Priority Titles -->
+    <string name="low_priority">Low</string>
+    <string name="mid_priority">Medium</string>
+    <string name="high_priority">High</string>
+</resources>

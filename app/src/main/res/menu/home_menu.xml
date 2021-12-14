@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/home"
+        android:id="@+id/homeScreenFragment"
+        android:icon="@drawable/homescreen_ic"/>
+    <item android:title="@string/alarms"
+        android:icon="@drawable/alarm_ic"/>
+    <item android:title=""
+        android:id="@+id/spacer"/>
+    <item android:title="@string/calendar"
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/calendar_ic"/>
+    <item android:title="@string/apps"
+        android:icon="@drawable/unknown_func_ic"/>
+</menu>
