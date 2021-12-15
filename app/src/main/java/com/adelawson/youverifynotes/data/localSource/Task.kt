@@ -1,8 +1,13 @@
 package com.adelawson.youverifynotes.data.localSource
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-@Entity(tableName = "tasks_table")
+import kotlinx.android.parcel.Parcelize
+import java.util.*
+
+@Parcelize
+@Entity(tableName = "tasks")
 data class Task(
     @PrimaryKey(autoGenerate = true)
     val taskID:Int,
@@ -10,5 +15,7 @@ data class Task(
     val taskDescription:String,
     val taskCategory:String,
     val taskPriority:String,
-    val taskReminder:Boolean
-)
+    val taskReminder:Boolean,
+    val taskDate: String
+
+):Parcelable

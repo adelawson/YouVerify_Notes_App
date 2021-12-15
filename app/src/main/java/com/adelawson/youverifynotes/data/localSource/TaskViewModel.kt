@@ -8,9 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TaskViewModel(app: Application): AndroidViewModel(app) {
-
-    private val readTasks:LiveData<List<Task>>
     private val repository:TaskRepository
+    val readTasks:LiveData<List<Task>>
 
     init {
         val taskDao = TasksDatabase.getDB(app).taskDao()
@@ -21,6 +20,12 @@ class TaskViewModel(app: Application): AndroidViewModel(app) {
     fun addTask(task:Task){
         viewModelScope.launch(Dispatchers.IO){
             repository.addTask(task)
+        }
+    }
+
+    fun updateTask(task: Task){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateTask(task)
         }
     }
 

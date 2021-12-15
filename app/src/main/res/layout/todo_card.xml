@@ -16,17 +16,34 @@
         android:elevation="0dp"
         android:padding="16dp"
         app:cardCornerRadius="16dp"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
-            android:text="@string/app_name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/taskname_chk"
+                style="@style/roundedcheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/app_name"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -35,13 +52,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corners"
+        android:background="@drawable/low_priority"
         android:elevation="2dp"
         android:paddingStart="8dp"
         android:paddingTop="4dp"
         android:paddingEnd="8dp"
         android:paddingBottom="4dp"
         android:text="@string/low_priority"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@id/task_crdvw"
@@ -51,27 +69,29 @@
         android:id="@+id/category_txv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_corners"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/low_priority"
         android:elevation="2dp"
         android:paddingStart="8dp"
         android:paddingTop="4dp"
         android:paddingEnd="8dp"
         android:paddingBottom="4dp"
         android:text="@string/low_priority"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/priority_txv"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/todo_cardtime_txv"
+        android:id="@+id/tasktime_txv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/low_priority"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/task_crdvw"
         app:layout_constraintEnd_toEndOf="@id/task_crdvw" />
 </androidx.constraintlayout.widget.ConstraintLayout>

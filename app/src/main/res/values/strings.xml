@@ -16,9 +16,9 @@
     <string name="high_priority">High</string>
 
     <!-- Homescreen Text-->
-    <string name="homescreen_hdr">Hello %1$d</string>
+    <string name="homescreen_hdr">Hello!</string>
     <string name="homescreen_subtitle">Let\'s be productive today</string>
-    <string name="homescreen_date">Today, %1$d</string>
+    <string name="homescreen_date">Today, </string>
 
     <!-- Create New task Text-->
     <string name="newtask_hdr">Create new task</string>
@@ -33,5 +33,9 @@
     <string name="work_cat">Work</string>
     <string name="family_cat">Family</string>
     <string name="school_cat">School</string>
+    <string name="calendar_hdr">Calendar</string>
+    <string name="mock_date">Tuesday 23, February</string>
+    <string name="mock_time">2 Hours</string>
+    <string name="mock_time_raw">11:00</string>
 
 </resources>
