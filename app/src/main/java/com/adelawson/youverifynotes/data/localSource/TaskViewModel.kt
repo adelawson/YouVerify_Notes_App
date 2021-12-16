@@ -17,7 +17,7 @@ class TaskViewModel(app: Application): AndroidViewModel(app) {
         readTasks = repository.readTasks
     }
 
-    fun addTask(task:Task){
+    fun addTask(task: Task){
         viewModelScope.launch(Dispatchers.IO){
             repository.addTask(task)
         }
@@ -26,6 +26,12 @@ class TaskViewModel(app: Application): AndroidViewModel(app) {
     fun updateTask(task: Task){
         viewModelScope.launch(Dispatchers.IO){
             repository.updateTask(task)
+        }
+    }
+
+    fun deleteTask(task: Task){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteTask(task)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.adelawson.youverifynotes.ui.main
+package com.adelawson.youverifynotes.ui.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -9,10 +9,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.adelawson.youverifynotes.R
 import com.adelawson.youverifynotes.data.localSource.Task
+import com.adelawson.youverifynotes.data.localSource.TaskViewModel
 import com.adelawson.youverifynotes.databinding.TodoCardBinding
+import com.adelawson.youverifynotes.ui.fragments.HomeScreenFragmentDirections
 
-class TaskRecyclerAdapter(val context: Context) : RecyclerView.Adapter<TaskRecyclerViewHolder>() {
+class TaskRecyclerAdapter(val context: Context, viewModel: TaskViewModel) : RecyclerView.Adapter<TaskRecyclerViewHolder>() {
+    val viewModel = viewModel
     var taskList = emptyList<Task>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskRecyclerViewHolder {
         val binding = TodoCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return TaskRecyclerViewHolder(binding)
@@ -24,34 +28,37 @@ class TaskRecyclerAdapter(val context: Context) : RecyclerView.Adapter<TaskRecyc
         val priority_txv = holder.binding.priorityTxv
         val taskNameCheckBox = holder.binding.tasknameChk
         val cardView = holder.binding.taskCrdvw
+        holder.binding.tasktimeTxv.text = currentTask.taskAlarmTime
 
 
         priority_txv.text= currentTask.taskPriority
         when (currentTask.taskPriority){
-            "low"-> priority_txv.background = getDrawable(context, R.drawable.low_priority)
-            "medium"-> priority_txv.background = getDrawable(context, R.drawable.mid_priority)
-            "high"-> priority_txv.background = getDrawable(context, R.drawable.high_priority)
+            "Low"-> priority_txv.background = getDrawable(context, R.drawable.low_priority)
+            "Medium"-> priority_txv.background = getDrawable(context, R.drawable.mid_priority)
+            "High"-> priority_txv.background = getDrawable(context, R.drawable.high_priority)
         }
 
         category_txv.text = currentTask.taskCategory
         when (currentTask.taskCategory){
-            "work"-> {category_txv.background = getDrawable(context, R.drawable.work_cat)
+            "Work"-> {category_txv.background = getDrawable(context, R.drawable.work_cat)
                         category_txv.setTextColor(Color.parseColor("#851c02")) }
-            "school"-> {category_txv.background = getDrawable(context, R.drawable.school_cat)
+            "School"-> {category_txv.background = getDrawable(context, R.drawable.school_cat)
                 category_txv.setTextColor(Color.parseColor("#970a92")) }
-            "family"-> {category_txv.background = getDrawable(context, R.drawable.family_cat)
+            "Family"-> {category_txv.background = getDrawable(context, R.drawable.family_cat)
                 category_txv.setTextColor(Color.parseColor("#357bbf")) }
         }
 
         taskNameCheckBox.text = currentTask.taskName
+        taskNameCheckBox.isChecked = currentTask.isTaskDone
+        taskNameCheckBox.setOnClickListener {
+            viewModel.deleteTask(currentTask)
+        }
 
         cardView.setOnClickListener {
             val navAction = HomeScreenFragmentDirections.
             actionHomeScreenFragmentToUpdateToDoFragment(currentTask)
             holder.itemView.findNavController().navigate(navAction)
         }
-
-
 
 
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeScreenFragment"
-        android:name="com.adelawson.youverifynotes.ui.main.HomeScreenFragment"
+        android:name="com.adelawson.youverifynotes.ui.fragments.HomeScreenFragment"
         android:label="homescreen_fragment"
         tools:layout="@layout/homescreen_fragment" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
-        android:name="com.adelawson.youverifynotes.CalendarFragment"
+        android:name="com.adelawson.youverifynotes.ui.fragments.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/newTodoFragment"
-        android:name="com.adelawson.youverifynotes.NewTodoFragment"
+        android:name="com.adelawson.youverifynotes.ui.fragments.NewTodoFragment"
         android:label="NewTodoFragment" >
         <action
             android:id="@+id/action_newTodoFragment_to_homeScreenFragment"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateToDoFragment"
-        android:name="com.adelawson.youverifynotes.ui.main.UpdateToDoFragment"
+        android:name="com.adelawson.youverifynotes.ui.fragments.UpdateToDoFragment"
         android:label="UpdateToDoFragment" >
         <action
             android:id="@+id/action_updateToDoFragment_to_homeScreenFragment"

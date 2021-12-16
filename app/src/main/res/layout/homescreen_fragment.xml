@@ -5,13 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.HomeScreenFragment">
+    tools:context=".ui.fragments.HomeScreenFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasks_rcv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="56dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
@@ -25,13 +27,12 @@
         android:id="@+id/homescreenhdr_txv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
         android:text="@string/homescreen_hdr"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
 
     <TextView
         android:id="@+id/homescreensub_txv"
@@ -57,13 +58,27 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop"
         android:background="?android:selectableItemBackground"
+        android:scaleType="centerCrop"
         android:src="@drawable/search_ic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

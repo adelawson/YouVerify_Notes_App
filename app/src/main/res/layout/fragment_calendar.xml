@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".CalendarFragment">
+    tools:context=".ui.fragments.CalendarFragment">
 
     <TextView
         android:id="@+id/calendarhdr_txv"
@@ -40,6 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarhdr_txv" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar_rcv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

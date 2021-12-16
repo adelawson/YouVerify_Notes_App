@@ -1,4 +1,4 @@
-package com.adelawson.youverifynotes.ui.main
+package com.adelawson.youverifynotes.ui.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.adelawson.youverifynotes.databinding.TodoCardBinding

@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import java.time.Duration
 import java.util.*
 
 @Parcelize
@@ -16,6 +17,10 @@ data class Task(
     val taskCategory:String,
     val taskPriority:String,
     val taskReminder:Boolean,
-    val taskDate: String
+    val taskDate: String,
+    val isTaskDone:Boolean,
+    val taskDuration: String,
+    val taskAlarmTime: String,
+    val taskTimeRange: String
 
 ):Parcelable

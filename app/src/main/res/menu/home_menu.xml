@@ -2,16 +2,16 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/home"
+    <item android:title=""
         android:id="@+id/homeScreenFragment"
         android:icon="@drawable/homescreen_ic"/>
-    <item android:title="@string/alarms"
+    <item android:title=""
         android:icon="@drawable/alarm_ic"/>
     <item android:title=""
         android:id="@+id/spacer"/>
-    <item android:title="@string/calendar"
+    <item android:title=""
         android:id="@+id/calendarFragment"
         android:icon="@drawable/calendar_ic"/>
-    <item android:title="@string/apps"
+    <item android:title=""
         android:icon="@drawable/unknown_func_ic"/>
 </menu>

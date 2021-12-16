@@ -1,4 +1,4 @@
-package com.adelawson.youverifynotes
+package com.adelawson.youverifynotes.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.adelawson.youverifynotes.R
 import com.adelawson.youverifynotes.databinding.MainActivityBinding
-import com.adelawson.youverifynotes.ui.main.HomeScreenFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding

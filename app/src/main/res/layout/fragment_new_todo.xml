@@ -1,279 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp">
-
-    <TextView
-        android:id="@+id/createtask_txv"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="@string/newtask_hdr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp">
 
-    <EditText
-        android:id="@+id/taskname_edtx"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="@string/taskname_fld"
-        android:textSize="16sp"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createtask_txv"
-        app:layout_constraintBottom_toTopOf="@id/taskdescription_edtx"/>
+        <TextView
+            android:id="@+id/createtask_txv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/newtask_hdr"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/taskdescription_edtx"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/taskdescription_fld"
-        android:textSize="16sp"
-        android:inputType="textLongMessage"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskname_edtx" />
+        <EditText
+            android:id="@+id/taskname_edtx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/taskname_fld"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/taskdescription_edtx"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createtask_txv" />
 
-    <LinearLayout
-        android:id="@+id/date_picker"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintEnd_toEndOf="@+id/taskdescription_edtx"
-        app:layout_constraintStart_toStartOf="@+id/taskdescription_edtx"
-        app:layout_constraintTop_toBottomOf="@+id/taskdescription_edtx"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/calendar_ic"/>
+        <EditText
+            android:id="@+id/taskdescription_edtx"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/taskdescription_fld"
+            android:textSize="16sp"
+            android:inputType="textLongMessage"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskname_edtx" />
+
+        <LinearLayout
+            android:id="@+id/date_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/taskdescription_edtx"
+            app:layout_constraintStart_toStartOf="@+id/taskdescription_edtx"
+            app:layout_constraintTop_toBottomOf="@+id/taskdescription_edtx">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/calendar_ic" />
+
+            <TextView
+                android:id="@+id/date_txv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/date"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/alarm_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/date_picker"
+            app:layout_constraintStart_toStartOf="@+id/date_picker"
+            app:layout_constraintTop_toBottomOf="@+id/date_picker">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/alarm_ic" />
+
+            <TextView
+                android:id="@+id/time_txv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/alarm"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/remind_me"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintEnd_toEndOf="@id/alarm_picker"
+            app:layout_constraintStart_toStartOf="@id/alarm_picker"
+            app:layout_constraintTop_toBottomOf="@id/alarm_picker">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/remind_me_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/remind_me"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/priorityhdr_txv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/priority_hdr"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remind_me" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+            android:id="@+id/priority_toggle"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priorityhdr_txv"
+            app:toggle_horizontalSpacing="16dp"
+            app:toggle_requiredAmount="1"
+            app:toggle_selectAnimation="circular_reveal"
+            app:toggle_selectableAmount="1">
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/low_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                app:toggle_backgroundColor="@android:color/transparent"
+                app:toggle_borderColor="#00ba88"
+                app:toggle_borderWidth="2dp"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_selectedBackgroundColor="#00ba88"
+                app:toggle_text="@string/low_priority"
+                app:toggle_textSize="16sp"/>
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/mid_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:toggle_backgroundColor="@android:color/transparent"
+                app:toggle_borderColor="#feb798"
+                app:toggle_borderWidth="2dp"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_selectedBackgroundColor="#feb798"
+                app:toggle_text="@string/mid_priority" />
+
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/high_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                app:toggle_backgroundColor="@android:color/transparent"
+                app:toggle_borderColor="#ff5c5c"
+                app:toggle_borderWidth="2dp"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_selectedBackgroundColor="#ff5c5c"
+                app:toggle_text="@string/high_priority" />
+
+        </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/date_txv"
-            android:layout_marginStart="16dp"
-            android:text="@string/date"
-            android:textSize="16sp"/>
+            android:id="@+id/category_txv"
+            android:layout_marginTop="16dp"
+            android:text="@string/category_hdr"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priority_toggle" />
 
-    </LinearLayout>
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+            android:id="@+id/category_toggle"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_txv"
+            app:toggle_horizontalSpacing="16dp"
+            app:toggle_requiredAmount="1"
+            app:toggle_selectAnimation="circular_reveal"
+            app:toggle_selectableAmount="1">
 
-    <LinearLayout
-        android:id="@+id/alarm_picker"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/date_picker"
-        app:layout_constraintStart_toStartOf="@+id/date_picker"
-        app:layout_constraintTop_toBottomOf="@+id/date_picker"
-        android:focusable="true">
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/work_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                app:toggle_backgroundColor="#ffb393"
+                app:toggle_selectedBorderColor="#ffb393"
+                app:toggle_borderWidth="2dp"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_textColor="@color/work_text"
+                app:toggle_textSize="14sp"
+                app:toggle_selectedTextColor="@color/work_text"
+                app:toggle_borderColor="@android:color/transparent"
+                app:toggle_selectedBackgroundColor="@color/white"
+                app:toggle_text="@string/work_cat"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/alarm_ic" />
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/family_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:toggle_backgroundColor="#d3e3f2"
+                app:toggle_selectedBorderColor="#d3e3f2"
+                app:toggle_borderColor="@android:color/transparent"
+                app:toggle_textColor="@color/family_text"
+                app:toggle_selectedTextColor="@color/family_text"
+                app:toggle_borderWidth="2dp"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_selectedBackgroundColor="@color/white"
+                app:toggle_text="@string/family_cat" />
 
-        <TextView
+            <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+                android:id="@+id/school_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                app:toggle_backgroundColor="#ffbcfd"
+                app:toggle_selectedBorderColor="#ffbcfd"
+                app:toggle_borderColor="@android:color/transparent"
+                app:toggle_borderWidth="2dp"
+                app:toggle_textColor="@color/school_text"
+                app:toggle_selectedTextColor="@color/school_text"
+                app:toggle_btnCornerRadius="8dp"
+                app:toggle_padding="16dp"
+                app:toggle_selectedBackgroundColor="@color/white"
+                app:toggle_text="@string/school_cat" />
+        </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addtask_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/time_txv"
-            android:layout_marginStart="16dp"
-            android:text="@string/alarm"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/remind_me"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?android:selectableItemBackground"
-        android:clickable="true"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@id/alarm_picker"
-        app:layout_constraintStart_toStartOf="@id/alarm_picker"
-        app:layout_constraintTop_toBottomOf="@id/alarm_picker"
-        android:focusable="true">
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/remind_me_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/remind_me"
-            android:textSize="16sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/priorityhdr_txv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/priority_hdr"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remind_me" />
-
-    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
-        android:id="@+id/priority_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priorityhdr_txv"
-        app:toggle_horizontalSpacing="16dp"
-        app:toggle_requiredAmount="1"
-        app:toggle_selectAnimation="circular_reveal"
-        app:toggle_selectableAmount="1">
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/low_priority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#00ba88"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#00ba88"
-            app:toggle_text="@string/low_priority"
-            app:toggle_textSize="16sp"/>
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/mid_priority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#feb798"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#feb798"
-            app:toggle_text="@string/mid_priority" />
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/high_priority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#ff5c5c"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#ff5c5c"
-            app:toggle_text="@string/high_priority" />
-
-    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/category_txv"
-        android:layout_marginTop="16dp"
-        android:text="@string/category_hdr"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priority_toggle" />
-
-    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
-        android:id="@+id/category_toggle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_txv"
-        app:toggle_horizontalSpacing="16dp"
-        app:toggle_requiredAmount="1"
-        app:toggle_selectAnimation="circular_reveal"
-        app:toggle_selectableAmount="1">
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/work_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#00ba88"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#00ba88"
-            app:toggle_text="@string/work_cat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/family_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#feb798"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#feb798"
-            app:toggle_text="@string/family_cat" />
-
-        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-            android:id="@+id/school_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            app:toggle_backgroundColor="@android:color/transparent"
-            app:toggle_borderColor="#ff5c5c"
-            app:toggle_borderWidth="2dp"
-            app:toggle_btnCornerRadius="8dp"
-            app:toggle_padding="16dp"
-            app:toggle_selectedBackgroundColor="#ff5c5c"
-            app:toggle_text="@string/school_cat" />
-    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addtask_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_toggle"
-        app:srcCompat="@drawable/ic_baseline_check_24" />
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_toggle"
+            app:srcCompat="@drawable/ic_baseline_check_24" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
