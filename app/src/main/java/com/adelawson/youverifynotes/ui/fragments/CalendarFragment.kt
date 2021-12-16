@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -41,6 +42,7 @@ class CalendarFragment : Fragment() {
     private lateinit var taskList: List<Task>
     private var selectedDate= LocalDate.now()
     private val today = LocalDate.now()
+    private lateinit var dates: List<String>
 
     private val dateFormatter = DateTimeFormatter.ofPattern("dd")
     private val dayFormatter = DateTimeFormatter.ofPattern("EEE")
@@ -74,6 +76,8 @@ class CalendarFragment : Fragment() {
                 view.setOnClickListener {
                     val firstDay = binding.calendarView.findFirstVisibleDay()
                     val lastDay = binding.calendarView.findLastVisibleDay()
+
+
                     if (firstDay == day) {
                         binding.calendarView.smoothScrollToDate(day.date.minusDays(2))
                     } else if (lastDay == day) {
@@ -114,9 +118,12 @@ class CalendarFragment : Fragment() {
         binding.calendarView.scrollToDate(LocalDate.now())
 
 
+
+
+
         val d1: Date = Date.from(currentMonth.atDay(1).atStartOfDay(ZoneId.systemDefault()).toInstant())
         val d2 = Date.from(currentMonth.plusMonths(3).atDay(31).atStartOfDay(ZoneId.systemDefault()).toInstant())
-        val dates = getDates(d1,d2)
+        dates = getDates(d1,d2)
 
         val calendarRecycler = binding.calendarRcv
         val taskAdapter = CalendarTaskParentAdapter()
@@ -127,6 +134,12 @@ class CalendarFragment : Fragment() {
             taskAdapter.setData(dates, task)
 
         })
+
+        val cal = Calendar.getInstance()
+        val sdf = SimpleDateFormat("EEEE d, LLLL", Locale.getDefault())
+        val curDate = sdf.format(cal.time).toString()
+        val pos = dates.indexOf(curDate)
+        calendarRecycler.scrollToPosition(pos)
 
 
 

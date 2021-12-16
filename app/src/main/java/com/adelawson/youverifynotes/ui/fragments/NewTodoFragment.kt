@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.adelawson.youverifynotes.NotificationHelper
 import com.adelawson.youverifynotes.R
 import com.adelawson.youverifynotes.data.localSource.Task
 import com.adelawson.youverifynotes.data.localSource.TaskViewModel
@@ -29,14 +30,20 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
     private lateinit var taskPriority:String
     private lateinit var taskCategory: String
     private val viewModel by viewModels<TaskViewModel>()
-    private var taskDate:String = ""
+    private var taskDate:String? = null
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private var timeStr:String = ""
-    private var firstHour = 0
-    private var firstMinute = 0
-    private var secondHour = 0
-    private var secondMinute = 0
+    private var timeStr:String? = null
+    private var mYear:Int= 0
+    private var mMonth:Int= 0
+    private var mDay:Int = 0
+    private var mFirstHour:Int = 0
+    private var mFirstMinute:Int = 0
+    private var mSecondHour:Int= 0
+    private var mSecondMinute: Int = 0
+
+    private val notificationHelper = NotificationHelper()
+
 
 
     override fun onCreateView(
@@ -108,15 +115,15 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
         addTaskFab.setOnClickListener {
             val taskDescription = taskDescriptionEditText.text.toString()
             val taskName = taskNameEditText.text.toString()
-            if (!(TextUtils.isEmpty(taskDescription) && TextUtils.isEmpty(taskName)&& TextUtils.isEmpty(taskDate)
-                        && TextUtils.isEmpty(timeStr))){
-                Toast.makeText(requireContext(), taskDate, Toast.LENGTH_SHORT).show()
+            if (!(TextUtils.isEmpty(taskDescription) && TextUtils.isEmpty(taskName))
+                && !(taskDate.isNullOrBlank() && mFirstHour==0) )
+                {Toast.makeText(requireContext(), "task created successfully ", Toast.LENGTH_SHORT).show()
                 createTask(
                     taskPriority = taskPriority, taskReminder = taskReminderSwitch.isChecked,
                     taskName = taskName, taskDescription = taskDescription,
-                    taskCategory = taskCategory, taskDate = taskDate,
-                    taskAlarmTime = "$firstHour:$firstMinute", taskDuration = calculateTaskDuration(),
-                    taskTimeRange = timeStr
+                    taskCategory = taskCategory, taskDate = taskDate!!,
+                    taskAlarmTime = "${parseTime(mFirstHour)}:${parseTime(mFirstMinute)}", taskDuration = calculateTaskDuration(),
+                    taskTimeRange = timeStr!!
                 )
                 navigateToHome()
 
@@ -124,9 +131,9 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
                 Toast.makeText(requireContext(), "Please enter a task name", Toast.LENGTH_SHORT).show()
             }else if (TextUtils.isEmpty(taskDescription)){
                 Toast.makeText(requireContext(), "Please enter a Description", Toast.LENGTH_SHORT).show()
-            }else if (binding.dateTxv.text == getString(R.string.date)){
+            }else if (taskDate.isNullOrBlank()){
                 Toast.makeText(requireContext(), "Please select a date", Toast.LENGTH_SHORT).show()
-            }else if (binding.timeTxv.text == getString(R.string.alarm)){
+            }else if (mFirstHour==0){
                 Toast.makeText(requireContext(), "Please select a time", Toast.LENGTH_SHORT).show()
             }
 
@@ -162,6 +169,9 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        mYear= year
+        mMonth = month
+        mDay = dayOfMonth
         val newCal = Calendar.getInstance()
         newCal.set(Calendar.YEAR,year)
         newCal.set(Calendar.MONTH,month)
@@ -173,18 +183,41 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
 
     }
     private val timeSetListener1 = TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-        firstHour = hour
-        firstMinute = min
+        mFirstHour = hour
+        mFirstMinute = min
         selectAlarm2()
     }
     private val timeSetListener2 = TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-        secondHour = hour
-        secondMinute = min
-        timeStr = "$firstHour:$firstMinute - $secondHour:$secondMinute"
+        mSecondHour = hour
+        mSecondMinute = min
+        val firstHourstr = parseTime(mFirstHour)
+        val secondHourstr= parseTime(mSecondHour)
+        val firstMinStr = parseTime(mFirstMinute)
+        val secondMinStr = parseTime(mSecondMinute)
+        timeStr = "$firstHourstr:$firstMinStr - $secondHourstr:$secondMinStr"
+
         binding.timeTxv.text = timeStr
 
     }
 
+    private fun addNotification(task:Task){
+
+        val dateSelected = Calendar.getInstance()
+        dateSelected.set(mYear,mMonth,mDay,mFirstHour,mFirstMinute)
+        val curTime = Calendar.getInstance()
+        val diff = dateSelected.timeInMillis.minus(curTime.timeInMillis)
+
+        notificationHelper.createNotificationChannel(requireContext())
+        notificationHelper.createTaskNotification(task,diff,requireContext())
+
+
+
+    }
+
+    private fun parseTime(int: Int):String{
+        val time = (if (int>=10) "$int" else "0$int")
+        return time
+    }
 
     private fun hideNav(){
         val bottomNav = activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)
@@ -206,6 +239,9 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
             taskPriority = taskPriority, taskID = 0, isTaskDone = false, taskAlarmTime = taskAlarmTime,
         taskDuration = taskDuration, taskTimeRange = taskTimeRange)
 
+        if (newTask.taskReminder){
+            addNotification(newTask)
+        }
         viewModel.addTask(newTask)
     }
     private fun navigateToHome(){
@@ -214,8 +250,8 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
     }
 
     private fun calculateTaskDuration():String{
-        val t1  = ((firstHour*60)+firstMinute)
-        val t2 = ((secondHour*60)+ secondMinute)
+        val t1  = ((mFirstHour*60)+mFirstMinute)
+        val t2 = ((mSecondHour*60)+ mSecondMinute)
         val t3 = (if(t1>t2) t1-t2 else t2-t1)
         val hr = t3/60
         val mn = t3%60

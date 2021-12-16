@@ -54,7 +54,6 @@ class HomeScreenFragment : Fragment(), SearchView.OnQueryTextListener {
             when (it.itemId){
                 R.id.search->{ setupSearch(it)
                     true
-
                 }
                 else -> {
                     super.onOptionsItemSelected(it)
@@ -78,6 +77,8 @@ class HomeScreenFragment : Fragment(), SearchView.OnQueryTextListener {
 
             taskAdapter.setData(taskList)
         })
+
+//        binding.noTaskTxv.visibility = (if (taskAdapter.itemCount ==0) View.VISIBLE else View.GONE)
 
 
         val swipeGestureController = object : SwipeGestureController(requireContext()){

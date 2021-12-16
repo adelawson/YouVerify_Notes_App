@@ -37,5 +37,7 @@
     <string name="mock_date">Tuesday 23, February</string>
     <string name="mock_time">2 Hours</string>
     <string name="mock_time_raw">11:00</string>
+    <string name="no_task_msg">No Tasks Yet</string>
+    <string name="channel_name">task_notif_channel</string>
 
 </resources>
