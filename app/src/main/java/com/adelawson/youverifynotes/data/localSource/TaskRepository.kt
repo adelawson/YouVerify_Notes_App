@@ -16,4 +16,8 @@ class TaskRepository(private val taskDao:TaskDao) {
     fun deleteTask(task: Task){
         taskDao.deleteTask(task)
     }
+
+    fun searchTask(taskName:String):LiveData<List<Task>>{
+        return taskDao.searchDB(taskName)
+    }
 }

@@ -2,6 +2,8 @@ package com.adelawson.youverifynotes.ui.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -21,40 +23,59 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeScreenFragment : Fragment() {
+class HomeScreenFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var binding:HomescreenFragmentBinding
     private val viewModel by viewModels<TaskViewModel>()
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
     private val cal = Calendar.getInstance()
     private lateinit var taskList: List<Task>
+    private lateinit var taskRecycler :RecyclerView
+    private lateinit var taskAdapter:TaskRecyclerAdapter
+    private lateinit var date:String
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setHasOptionsMenu(true)
         binding = HomescreenFragmentBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showNav()
+        val toolBar = binding.toolbarMain
+        toolBar.inflateMenu(R.menu.search)
+        toolBar.setOnMenuItemClickListener {
+            when (it.itemId){
+                R.id.search->{ setupSearch(it)
+                    true
+
+                }
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
 
         val dateTxv = binding.homescreendateTxv
         val sdf = SimpleDateFormat("EEEE d, LLLL", Locale.getDefault())
-        val date = sdf.format(cal.time).toString()
+        date = sdf.format(cal.time).toString()
         val dateTxt = "Today,$date"
         dateTxv.text = dateTxt
 
         //task recycler setup
-        val taskRecycler = binding.tasksRcv
-        val taskAdapter = TaskRecyclerAdapter(requireContext(), viewModel)
+        taskRecycler = binding.tasksRcv
+        taskAdapter = TaskRecyclerAdapter(requireContext(), viewModel)
         taskRecycler.adapter = taskAdapter
         taskRecycler.layoutManager = LinearLayoutManager(requireContext())
         viewModel.readTasks.observe(viewLifecycleOwner, Observer{task->
             taskList = task.filter {  it.taskDate == date }
+
             taskAdapter.setData(taskList)
         })
 
@@ -91,11 +112,35 @@ class HomeScreenFragment : Fragment() {
 
     }
 
+    fun setupSearch(item: MenuItem){
+        val searchVw = item.actionView as SearchView
+        searchVw.isSubmitButtonEnabled = true
+        searchVw.setOnQueryTextListener(this)
+    }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search,menu)
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query!=null){
+            searchDB(query)
+        }
+        return true
+    }
 
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query!=null){
+            searchDB(query)
+        }
+        return true
+    }
+
+    private fun searchDB(taskName:String){
+        val taskName = "%$taskName%"
+
+        viewModel.searchTask(taskName).observe(this,{
+            it.let {
+                val searchList = it.filter { tsk -> tsk.taskDate ==date }
+                taskAdapter.setData(searchList)
+            }
+        })
     }
 
 }

@@ -18,5 +18,8 @@ interface TaskDao {
     @Query("SELECT * FROM tasks ORDER BY taskID ASC")
     fun readTasks():LiveData<List<Task>>
 
+    @Query("SELECT * FROM tasks WHERE taskName LIKE:searchQuery")
+    fun searchDB(searchQuery:String):LiveData<List<Task>>
+
 
 }
