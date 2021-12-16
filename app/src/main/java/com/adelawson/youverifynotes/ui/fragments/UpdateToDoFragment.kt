@@ -37,10 +37,10 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var timeStr:String
     private lateinit var taskDuration: String
     private lateinit var taskAlarmTime:String
-    private var firstHour = 0
-    private var firstMinute = 0
-    private var secondHour = 0
-    private var secondMinute = 0
+    private var mFirstHour = 0
+    private var mFirstMinute = 0
+    private var mSecondHour = 0
+    private var mSecondMinute = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,6 +84,12 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
         remindSwtch.isChecked = task.taskReminder
         taskCategory = task.taskCategory
         taskPriority = task.taskPriority
+
+
+        val imgbtn = binding.backArrowNw
+        imgbtn.setOnClickListener {
+            navController.popBackStack()
+        }
 
         when(taskPriority){
             "Low"-> priorityToggleGrp.selectButton(R.id.low_priority)
@@ -167,6 +173,7 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
         val month = calendar.get(Calendar.MONTH)
         val year = calendar.get(Calendar.YEAR)
         val datePickerDialog = DatePickerDialog(requireContext(), this, year, month,day)
+        datePickerDialog.datePicker.minDate = Calendar.getInstance().timeInMillis
         datePickerDialog.show()
 
     }
@@ -193,24 +200,24 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
         newCal.set(Calendar.YEAR,year)
         newCal.set(Calendar.MONTH,month)
         newCal.set(Calendar.DAY_OF_MONTH,dayOfMonth)
-        val sdf = SimpleDateFormat(" EEEE d, LLLL, yyyy ")
+        val sdf = SimpleDateFormat("EEEE d, LLLL", Locale.getDefault())
         val date = sdf.format(newCal.time).toString()
         date_txv.text = date
         taskDate = date
 
     }
     private val timeSetListener1 = TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-        firstHour = hour
-        firstMinute = min
+        mFirstHour = hour
+        mFirstMinute = min
         selectAlarm2()
     }
     private val timeSetListener2 = TimePickerDialog.OnTimeSetListener { timePicker, hour, min ->
-        secondHour = hour
-        secondMinute = min
-        timeStr = "$firstHour:$firstMinute - $secondHour:$secondMinute"
+        mSecondHour = hour
+        mSecondMinute = min
+        timeStr = "$mFirstHour:$mFirstMinute - $mSecondHour:$mSecondMinute"
         binding.timeTxv.text = timeStr
         taskDuration = calculateTaskDuration()
-        taskAlarmTime= "$firstHour:$firstMinute"
+        taskAlarmTime= "$mFirstHour:$mFirstMinute"
 
     }
 
@@ -238,8 +245,8 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
         navController.navigate(navAction)
     }
     private fun calculateTaskDuration():String{
-        val t1  = ((firstHour*60)+firstMinute)
-        val t2 = ((secondHour*60)+ secondMinute)
+        val t1  = ((mFirstHour*60)+mFirstMinute)
+        val t2 = ((mSecondHour*60)+ mSecondMinute)
         val t3 = (if(t1>t2) t1-t2 else t2-t1)
         val hr = t3/60
         val mn = t3%60

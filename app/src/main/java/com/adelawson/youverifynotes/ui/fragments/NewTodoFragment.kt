@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.adelawson.youverifynotes.NotificationHelper
 import com.adelawson.youverifynotes.R
 import com.adelawson.youverifynotes.data.localSource.Task
@@ -70,6 +71,11 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
 
 
 
+
+        val imgbtn = binding.backArrowNw
+        imgbtn.setOnClickListener {
+            navController.popBackStack()
+        }
 
         val priorityToggle = binding.priorityToggle
         priorityToggle.selectButton(R.id.low_priority)
@@ -147,6 +153,7 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
         val month = calendar.get(Calendar.MONTH)
         val year = calendar.get(Calendar.YEAR)
         val datePickerDialog = DatePickerDialog(requireContext(), this, year, month,day)
+        datePickerDialog.datePicker.minDate = Calendar.getInstance().timeInMillis
         datePickerDialog.show()
 
     }
