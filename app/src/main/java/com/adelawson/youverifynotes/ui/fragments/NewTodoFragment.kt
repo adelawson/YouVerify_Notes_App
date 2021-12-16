@@ -216,9 +216,6 @@ class NewTodoFragment:Fragment(), DatePickerDialog.OnDateSetListener{
 
         notificationHelper.createNotificationChannel(requireContext())
         notificationHelper.createTaskNotification(task,diff,requireContext())
-
-
-
     }
 
     private fun parseTime(int: Int):String{

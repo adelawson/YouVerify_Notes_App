@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
+import com.adelawson.youverifynotes.NotificationHelper
 import com.adelawson.youverifynotes.R
 import com.adelawson.youverifynotes.data.localSource.Task
 import com.adelawson.youverifynotes.data.localSource.TaskViewModel
@@ -37,10 +38,14 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var timeStr:String
     private lateinit var taskDuration: String
     private lateinit var taskAlarmTime:String
-    private var mFirstHour = 0
-    private var mFirstMinute = 0
-    private var mSecondHour = 0
-    private var mSecondMinute = 0
+    private var mYear:Int= 0
+    private var mMonth:Int= 0
+    private var mDay:Int = 0
+    private var mFirstHour:Int = 0
+    private var mFirstMinute:Int = 0
+    private var mSecondHour:Int= 0
+    private var mSecondMinute: Int = 0
+    private val notificationHelper = NotificationHelper()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -196,6 +201,9 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        mYear= year
+        mMonth = month
+        mDay = dayOfMonth
         val newCal = Calendar.getInstance()
         newCal.set(Calendar.YEAR,year)
         newCal.set(Calendar.MONTH,month)
@@ -223,9 +231,6 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
 
 
 
-
-
-
     private fun updateTask(taskName:String,
                            taskDescription:String,
                            taskCategory:String,
@@ -238,6 +243,9 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
             taskPriority = taskPriority, taskID = args.editTask.taskID, isTaskDone = false, taskAlarmTime = taskAlarmTime,
             taskDuration = taskDuration, taskTimeRange = taskTimeRange)
 
+        if (newTask.taskReminder){
+            addNotification(newTask)
+        }
         viewModel.updateTask(newTask)
     }
     private fun navigateToHome(){
@@ -263,5 +271,16 @@ class UpdateToDoFragment:Fragment(), DatePickerDialog.OnDateSetListener {
         val bottomFab = activity?.findViewById<FloatingActionButton>(R.id.new_note_fab)
         bottomFab?.visibility = View.GONE
 
+    }
+
+    private fun addNotification(task:Task){
+
+        val dateSelected = Calendar.getInstance()
+        dateSelected.set(mYear,mMonth,mDay,mFirstHour,mFirstMinute)
+        val curTime = Calendar.getInstance()
+        val diff = dateSelected.timeInMillis.minus(curTime.timeInMillis)
+
+        notificationHelper.createNotificationChannel(requireContext())
+        notificationHelper.createTaskNotification(task,diff,requireContext())
     }
 }

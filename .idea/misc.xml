@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/alarm_ic.xml" value="0.2703125" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/calendar_ic.xml" value="0.2703125" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/drawable/date_selector.xml" value="0.2703125" />
@@ -30,6 +31,7 @@
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/layout/todo_card.xml" value="0.264" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/menu/home_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/menu/search.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/adela/AndroidStudioProjects/YouVerifyNotes/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
       </map>
     </option>
   </component>
